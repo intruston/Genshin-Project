@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Genshin Impact App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="title"></div>
+    <div class="filter">
+      <select name="rarity" id="rarity">
+        <option disabled selected value>Select rarity</option>
+        <option value="5">5*</option>
+        <option value="4">4*</option>
+      </select>
+      <select name="vision" id="vision">
+        <option disabled selected value>Select vision</option>
+        <option value="Anemo">Anemo</option>
+        <option value="Cryo">Cryo</option>
+        <option value="Dendro">Dendro</option>
+        <option value="Electro">Electro</option>
+        <option value="Geo">Geo</option>
+        <option value="Hydro">Hydro</option>
+        <option value="Pyro">Pyro</option>
+      </select>
+      <select name="weapon" id="weapon">
+        <option disabled selected value>Select weapon</option>
+        <option value="Bow">Bow</option>
+        <option value="Polearm">Polearm</option>
+        <option value="Sword">Sword</option>
+        <option value="Catalyst">Catalyst</option>
+        <option value="Claymore">Claymore</option>
+      </select>
+      <button type="button" id="refresh">Refresh</button>
+      <br />
+    </div>
+    <div class="filtername">Or search by name</div>
+    <input type="search" id="namesearch" name="namesearch" />
+    <div class="button">
+      <button type="button" id="button">Find character</button>
+    </div>
+    <div class="results">
+      <table id="table">
+        <tr>
+          <th>Name</th>
+          <th>Rarity</th>
+          <th>Vision</th>
+          <th>Weapon</th>
+        </tr>
+      </table>
+    </div>
+    <div class="maininfo"></div>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
