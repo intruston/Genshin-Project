@@ -1,3 +1,4 @@
+//All images are taken from https://muakasan.github.io/genshin-portraits/index.html
 export const characterImages = [
   {
     name: "Albedo",
@@ -117,7 +118,7 @@ export const characterImages = [
   },
   {
     name: "Noelle",
-    src: "https://muakasan.github.io/genshin-portraits/assets/UI_AvatarIcon_Noelle.png",
+    src: "https://muakasan.github.io/genshin-portraits/assets/UI_AvatarIcon_Noel.png",
   },
   {
     name: "Qiqi",
@@ -214,5 +215,36 @@ export const characterImages = [
   {
     name: "Traveler",
     src: "https://muakasan.github.io/genshin-portraits/assets/UI_AvatarIcon_PlayerGirl.png",
+  },
+];
+
+export const visionImages = [
+  {
+    vision: "Anemo",
+    src: "https://muakasan.github.io/genshin-portraits/assets/anemo.png",
+  },
+  {
+    vision: "Cryo",
+    src: "https://muakasan.github.io/genshin-portraits/assets/cryo.png",
+  },
+  {
+    vision: "Electro",
+    src: "https://muakasan.github.io/genshin-portraits/assets/electro.png",
+  },
+  {
+    vision: "Geo",
+    src: "https://muakasan.github.io/genshin-portraits/assets/geo.png",
+  },
+  {
+    vision: "Hydro",
+    src: "https://muakasan.github.io/genshin-portraits/assets/hydro.png",
+  },
+  {
+    vision: "Pyro",
+    src: "https://muakasan.github.io/genshin-portraits/assets/pyro.png",
+  },
+  {
+    vision: "Dendro",
+    src: "https://muakasan.github.io/genshin-portraits/assets/dendro.png",
   },
 ];

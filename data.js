@@ -1,4 +1,4 @@
-import { characterImages } from "./images.js";
+import { characterImages, visionImages } from "./images.js";
 
 export async function mainData() {
   try {
@@ -96,9 +96,12 @@ function displayCharacters(characters) {
     const rarityCell = row.insertCell();
     const visionCell = row.insertCell();
     const weaponCell = row.insertCell();
-    nameCell.innerHTML = character.name;
+    nameCell.innerHTML = `<span id="line">|</span> ${character.name}`;
     rarityCell.innerHTML = character.rarity;
-    visionCell.innerHTML = character.vision;
+    const visionSrc = visionImages.find(
+      (c) => c.vision === character.vision
+    ).src;
+    visionCell.innerHTML = `<img src="${visionSrc}" class="vision-image"> ${character.vision}`;
     weaponCell.innerHTML = character.weapon;
   }
 }
@@ -116,14 +119,13 @@ function showInfo(character) {
   maininfo.appendChild(image);
   maininfo.appendChild(document.createElement("br"));
 
-  const nameSpan = document.createElement("span");
-  nameSpan.setAttribute("id", "name-span");
-  nameSpan.innerHTML = `<b>Name:</b> ${character.name}`;
-  maininfo.appendChild(nameSpan);
-  maininfo.appendChild(document.createElement("br"));
+  const nameH2 = document.createElement("h2");
+  nameH2.setAttribute("id", "name-h3");
+  nameH2.innerHTML = `${character.name}`;
+  maininfo.appendChild(nameH2);
   const descriptionSpan = document.createElement("span");
   descriptionSpan.setAttribute("id", "description-span");
-  descriptionSpan.innerHTML = `<b>Description:</b> ${character.description}`;
+  descriptionSpan.innerHTML = `<b>Description:</b> <i>${character.description}</i>`;
   maininfo.appendChild(descriptionSpan);
   maininfo.appendChild(document.createElement("br"));
   const raritySpan = document.createElement("span");
@@ -133,8 +135,11 @@ function showInfo(character) {
   maininfo.appendChild(document.createElement("br"));
   const visionSpan = document.createElement("span");
   visionSpan.setAttribute("id", "vision-span");
-  visionSpan.innerHTML = `<b>Vision:</b> ${character.vision}`;
+  //add pictures to vision
+  const visionSrc = visionImages.find((c) => c.vision === character.vision).src;
+  visionSpan.innerHTML = `<b>Vision:</b> <img src="${visionSrc}" class="vision-image"> ${character.vision} `;
   maininfo.appendChild(visionSpan);
+
   maininfo.appendChild(document.createElement("br"));
   const weaponSpan = document.createElement("span");
   weaponSpan.setAttribute("id", "weapon-span");
@@ -149,7 +154,7 @@ function showInfo(character) {
   for (let i = 0; i < character.passiveTalents.length; i++) {
     const talent = character.passiveTalents[i];
     const talentSpan = document.createElement("span");
-    talentSpan.innerHTML = `<b>Name:</b> ${talent.name} <br> <b>Description:</b> ${talent.description}`;
+    talentSpan.innerHTML = `<b>Name:</b> ${talent.name} <br> <b>Description:</b> <i>${talent.description}</i>`;
     talentSpan.setAttribute("id", `passive-talent-${i}`);
     maininfo.appendChild(talentSpan);
     maininfo.appendChild(document.createElement("br"));
@@ -160,7 +165,7 @@ function showInfo(character) {
   for (let i = 0; i < character.skillTalents.length; i++) {
     const talent = character.skillTalents[i];
     const talentSpan = document.createElement("span");
-    talentSpan.innerHTML = `<b>Name:</b> ${talent.name} <br> <b>Description:</b> ${talent.description}`;
+    talentSpan.innerHTML = `<b>Name:</b> ${talent.name} <br> <b>Description:</b> <i>${talent.description}</i>`;
     talentSpan.setAttribute("id", `skill-talent-${i}`);
     maininfo.appendChild(talentSpan);
     maininfo.appendChild(document.createElement("br"));

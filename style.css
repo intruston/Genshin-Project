@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap");
+
+body {
+  font-family: "Fira Sans", sans-serif;
+  background-color: #111111;
+  color: white;
+}
+
+.wrapper {
+  overflow: auto;
+}
+
+.leftwrapper {
+  float: left;
+}
+
+.title {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#logo {
+  width: 10%;
+}
+
+#officiallink {
+  text-align: right;
+  text-decoration: none;
+  color: #505050;
+}
+
+#officiallink:hover {
+  color: white;
+}
+
+select {
+  position: relative;
+  font-family: "Fira Sans", sans-serif;
+  font-size: larger;
+  border-radius: 0;
+  border-width: 0;
+  background-color: #505050;
+  color: white;
+  width: 200px;
+  height: 30px;
+}
+
+.filter {
+  margin: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+#refresh {
+  position: relative;
+  background: transparent;
+  border-width: 0;
+  cursor: pointer;
+  list-style: none;
+  transition: all 200ms;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#refresh:hover {
+  -webkit-filter: brightness(50%);
+}
+
+.filtername {
+  margin: 0 30px;
+  font-size: larger;
+}
+
+#namesearch {
+  background-color: #505050;
+  color: white;
+  width: 200px;
+  height: 30px;
+  border-width: 0;
+}
+
+#button {
+  position: relative;
+  background-color: #4fab6c;
+  font-family: "Fira Sans", sans-serif;
+  font-size: larger;
+  color: white;
+  width: 200px;
+  height: 30px;
+  margin-top: 20px;
+  border-width: 0;
+  border-radius: 0;
+  cursor: pointer;
+  list-style: none;
+  transition: all 200ms;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#button:hover,
+#button:focus {
+  background-color: #3e7c51;
+}
+
+#table {
+  margin: 30px;
+  width: 640px;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+#table th {
+  background-color: #505050;
+}
+
+#table td,
+#table th {
+  padding: 6px;
+}
+
+#table td:first-child:hover {
+  color: #4fab6c;
+}
+
+#line {
+  color: #4fab6c;
+}
+
+.maininfo {
+  float: right;
+  text-align: justify;
+  width: 580px;
+  margin: 30px;
+  line-height: 1.7;
+}
+
+#character-image {
+  margin-left: 55%;
+}
+
+.vision-image {
+  width: 15px;
+}
