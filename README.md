@@ -4,6 +4,8 @@ This application is a web-based Genshin Impact character encyclopedia. It allows
 
 ![](https://i.ibb.co/wsj2ttX/Screenshot-2023-01-10-at-21-37-37.png)
 
+You could start the App here: https://intruston.github.io/Genshin-Project/
+
 To fetch the data about chatacters I used API from [genshin.dev](https://genshin.dev/) API. This API provide data about the Genshin Impact game.
 However, API does not provide any images. All images are taken from  another [project](https://muakasan.github.io/genshin-portraits/index.html). I store images links inside **images.js** file as an array of objects.
 
