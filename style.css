@@ -153,6 +153,10 @@ select {
   width: 15px;
 }
 
+#visionmore {
+  color: #505050;
+}
+
 .visionname:hover {
   color: #4fab6c;
   cursor: pointer;

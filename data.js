@@ -195,7 +195,7 @@ async function showElementInfo(elementName) {
     visionMore.innerHTML = "";
     if (!reactionsHeading) {
       const reactionsHeading = document.createElement("h3");
-      reactionsHeading.innerHTML = "Reactions:";
+      reactionsHeading.innerHTML = "Elemental reactions:";
       reactionsHeading.classList.add("reaction");
       visionName.appendChild(reactionsHeading);
       for (let i = 0; i < data.reactions.length; i++) {
