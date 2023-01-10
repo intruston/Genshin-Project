@@ -9,19 +9,22 @@ export async function mainData() {
     const vision = document.getElementById("vision").value;
     const weapon = document.getElementById("weapon").value;
 
+    //if you do not search by name and choose a filter
     if (nameSearch) {
       selectedArray = searchByName(charactersArray, nameSearch);
     } else if (rarity || vision || weapon) {
       selectedArray = filterCharacters(charactersArray);
     }
 
+    //if you search by name and nothing is found - show all
     if (selectedArray.length > 0) {
       displayCharacters(selectedArray);
     } else {
       displayCharacters(charactersArray);
     }
   } catch (error) {
-    console.log(error);
+    const maininfo = document.querySelector(".maininfo");
+    maininfo.innerHTML = `Something went wrong :( ${error}`;
   }
 }
 
@@ -32,7 +35,8 @@ async function fetchCharacters() {
     const charactersArray = await fetchEachCharacter(charactersData);
     return charactersArray;
   } catch (error) {
-    console.log(error);
+    const maininfo = document.querySelector(".maininfo");
+    maininfo.innerHTML = `Something went wrong :( ${error}`;
   }
 }
 
@@ -47,7 +51,8 @@ async function fetchEachCharacter(cdata) {
     });
     return Promise.all(charactersArray);
   } catch (error) {
-    console.log(error);
+    const maininfo = document.querySelector(".maininfo");
+    maininfo.innerHTML = `Something went wrong :( ${error}`;
   }
 }
 
@@ -57,6 +62,7 @@ function filterCharacters(charactersArray) {
   const chosenWeapon = document.getElementById("weapon").value;
   let filteredArray = charactersArray;
 
+  //if one of the filter is skipped
   if (chosenRarity) {
     filteredArray = filteredArray.filter(
       (character) => character.rarity === chosenRarity
@@ -86,7 +92,6 @@ function displayCharacters(characters) {
   while (table.rows.length > 1) {
     table.deleteRow(1);
   }
-  //    console.log(JSON.parse(JSON.stringify(characters)));
   for (const character of characters) {
     const row = table.insertRow();
     const nameCell = row.insertCell();
@@ -137,8 +142,14 @@ function showInfo(character) {
   visionSpan.setAttribute("id", "vision-span");
   //add pictures to vision
   const visionSrc = visionImages.find((c) => c.vision === character.vision).src;
-  visionSpan.innerHTML = `<b>Vision:</b> <img src="${visionSrc}" class="vision-image"> ${character.vision} `;
+  visionSpan.innerHTML = `<b>Vision:</b> <img src="${visionSrc}" class="vision-image" alt="${character.vision}"> <span class="visionname">${character.vision}</span> <span id="visionmore"><small>(click to know more about elemental reactions)</small></span>`;
   maininfo.appendChild(visionSpan);
+
+  // show elemental reactions
+  const visionName = document.querySelector(".visionname");
+  visionSpan.addEventListener("click", () => {
+    showElementInfo(visionName.innerText);
+  });
 
   maininfo.appendChild(document.createElement("br"));
   const weaponSpan = document.createElement("span");
@@ -154,8 +165,8 @@ function showInfo(character) {
   for (let i = 0; i < character.passiveTalents.length; i++) {
     const talent = character.passiveTalents[i];
     const talentSpan = document.createElement("span");
-    talentSpan.innerHTML = `<b>Name:</b> ${talent.name} <br> <b>Description:</b> <i>${talent.description}</i>`;
-    talentSpan.setAttribute("id", `passive-talent-${i}`);
+    talentSpan.innerHTML = `> <b>${talent.name}</b> <br> <b>Description:</b> <i>${talent.description}</i><br>`;
+    talentSpan.setAttribute("class", `passive-talent`);
     maininfo.appendChild(talentSpan);
     maininfo.appendChild(document.createElement("br"));
   }
@@ -165,9 +176,42 @@ function showInfo(character) {
   for (let i = 0; i < character.skillTalents.length; i++) {
     const talent = character.skillTalents[i];
     const talentSpan = document.createElement("span");
-    talentSpan.innerHTML = `<b>Name:</b> ${talent.name} <br> <b>Description:</b> <i>${talent.description}</i>`;
-    talentSpan.setAttribute("id", `skill-talent-${i}`);
+    talentSpan.innerHTML = `> <b>${talent.name}</b> <br> <b>Description:</b> <i>${talent.description}</i><br>`;
+    talentSpan.setAttribute("class", `skill-talent`);
     maininfo.appendChild(talentSpan);
     maininfo.appendChild(document.createElement("br"));
+  }
+}
+
+async function showElementInfo(elementName) {
+  try {
+    const response = await fetch(
+      `https://api.genshin.dev/elements/${elementName}`
+    );
+    const data = await response.json();
+    const visionName = document.getElementById("vision-span");
+    const reactionsHeading = visionName.querySelector(".reaction");
+    const visionMore = document.getElementById("visionmore");
+    visionMore.innerHTML = "";
+    if (!reactionsHeading) {
+      const reactionsHeading = document.createElement("h3");
+      reactionsHeading.innerHTML = "Reactions:";
+      reactionsHeading.classList.add("reaction");
+      visionName.appendChild(reactionsHeading);
+      for (let i = 0; i < data.reactions.length; i++) {
+        const reaction = data.reactions[i];
+        const reactionSpan = document.createElement("span");
+        reactionSpan.innerHTML = `> <b>${reaction.name}</b> <br> <b>Description:</b> <i>${reaction.description}</i> <br>`;
+        reactionSpan.setAttribute("class", "reaction");
+        visionName.appendChild(reactionSpan);
+        visionName.appendChild(document.createElement("br"));
+      }
+    }
+  } catch (error) {
+    const visionName = document.querySelector(".visionname");
+    const reaction = visionName.querySelector(".reaction");
+    if (!reaction) {
+      visionName.innerHTML += `<br> Something went wrong :( ${error}`;
+    }
   }
 }

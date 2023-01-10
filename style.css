@@ -2,7 +2,8 @@
 
 body {
   font-family: "Fira Sans", sans-serif;
-  background-color: #111111;
+  /*background-color: #111111;*/
+  background-image: url(background.png);
   color: white;
 }
 
@@ -82,6 +83,10 @@ select {
   border-width: 0;
 }
 
+#namesearch:focus {
+  outline: 1px solid #4fab6c;
+}
+
 #button {
   position: relative;
   background-color: #4fab6c;
@@ -125,6 +130,7 @@ select {
 
 #table td:first-child:hover {
   color: #4fab6c;
+  cursor: pointer;
 }
 
 #line {
@@ -145,4 +151,9 @@ select {
 
 .vision-image {
   width: 15px;
+}
+
+.visionname:hover {
+  color: #4fab6c;
+  cursor: pointer;
 }
