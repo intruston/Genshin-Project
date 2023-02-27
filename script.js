@@ -1,4 +1,4 @@
-import { mainData } from "./data.js";
+import { mainData } from "./index.js";
 
 function main() {
   const button = document.getElementById("button");
